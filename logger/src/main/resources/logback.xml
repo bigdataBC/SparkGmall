@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOG_HOME" value="/opt/module/rt_gmall/gmall2020" />
+    <property name="LOG_HOME" value="/opt/module/gmall-spark/rt_gmall/gmall2020" />
 <!--    <property name="LOG_HOME" value="C:/develop" />-->
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
