@@ -39,6 +39,6 @@ object MyRedisUtil {
     def main(args: Array[String]): Unit = {
         val jedis: Jedis = getJedisClient()
         println(jedis.ping())
-        println(jedis.get("lft"))
+//        println(jedis.get("lft"))
     }
 }

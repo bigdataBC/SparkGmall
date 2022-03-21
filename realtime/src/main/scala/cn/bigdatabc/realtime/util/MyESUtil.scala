@@ -23,7 +23,7 @@ object MyESUtil {
     def build() = {
         jestFactory = new JestClientFactory()
         jestFactory.setHttpClientConfig(new HttpClientConfig
-        .Builder("http://hwecs:9200")
+        .Builder("http://node1:9200")
         .multiThreaded(true)
         .maxTotalConnection(20)
         .connTimeout(10000)
@@ -174,9 +174,9 @@ object MyESUtil {
 
     def main(args: Array[String]): Unit = {
 //        putIndex()
-//        putIndex2()
-//        queryIndexById()
-        queryIndexByCondition2()
+        putIndex2()
+        queryIndexById()
+//        queryIndexByCondition2()
     }
 
     /**
