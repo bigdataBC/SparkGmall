@@ -1,7 +1,6 @@
 package cn.bigdatabc.realtime.util
 
-import com.nimbusds.jose.util.StandardCharset
-
+import java.nio.charset.StandardCharsets
 import java.io.InputStreamReader
 import java.util.Properties
 
@@ -20,7 +19,7 @@ object MyPropertiesUtil {
         val prop: Properties = new Properties()
         prop.load(new InputStreamReader(
             Thread.currentThread().getContextClassLoader.getResourceAsStream(propertiesName),
-            StandardCharset.UTF_8))
+            StandardCharsets.UTF_8))
         prop
     }
 }
