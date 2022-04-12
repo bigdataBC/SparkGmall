@@ -14,4 +14,3 @@ case class SkuInfo(id:String ,
                    var category3_name:String,
                    var spu_name:String,
                    var tm_name:String)
-

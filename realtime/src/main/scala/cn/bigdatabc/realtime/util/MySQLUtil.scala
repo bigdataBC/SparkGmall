@@ -21,7 +21,7 @@ object MySQLUtil {
         Class.forName("com.mysql.jdbc.Driver")
         //建立连接
         val conn: Connection = DriverManager.getConnection(
-            "jdbc:mysql://hwecs:3306/gmall0523_rs?characterEncoding=utf-8&useSSL=false",
+            "jdbc:mysql://node1:3306/gmall0523_rs?characterEncoding=utf-8&useSSL=false",
             "root",
             "123456")
 

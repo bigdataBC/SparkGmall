@@ -9,4 +9,3 @@ case class ProvinceInfo (
                           area_code:String,
                           iso_code:String,
                         )
-
