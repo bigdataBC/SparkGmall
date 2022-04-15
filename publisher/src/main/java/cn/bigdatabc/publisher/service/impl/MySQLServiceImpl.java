@@ -16,6 +16,9 @@ public class MySQLServiceImpl implements MySQLService {
 
     @Override
     public List<Map> getTradeAmount(String startTime, String endTime, int topN) {
+        System.out.println(startTime);
+        System.out.println(endTime);
+        System.out.println(trademarkStatMapper.selectTradeSum(startTime,endTime,topN));
         return trademarkStatMapper.selectTradeSum(startTime,endTime,topN);
     }
 }

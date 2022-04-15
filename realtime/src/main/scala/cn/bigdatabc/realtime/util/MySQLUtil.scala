@@ -22,7 +22,7 @@ object MySQLUtil {
         //建立连接
         val conn: Connection = DriverManager.getConnection(
             "jdbc:mysql://node1:3306/gmall0523_rs?characterEncoding=utf-8&useSSL=false",
-            "root",
+            "lft",
             "123456")
 
         //创建数据库操作对象

@@ -6,7 +6,7 @@
     2.select标签中，id属性的值和接口中的方法名保持一致
     3.通过#{}方式接收参数，如果只有一个参数，名字随意。
     4.语句结束之后，必须不能加分号
-    5.在SpringBoot启动类上加@MapperScan(basePackages = "com.atguigu.gmall.publisher.mapper")
+    5.在SpringBoot启动类上加@MapperScan(basePackages = "cn.bigdatabc.publisher.mapper")
 -->
 <mapper namespace="cn.bigdatabc.publisher.mapper.OrderWideMapper">
     <select id="selectOrderAmountTotal" resultType="java.math.BigDecimal">
