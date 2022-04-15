@@ -83,6 +83,7 @@ object BaseDBMaxwellApp {
         OffsetManagerUtil.saveOffset(topic,groupId,offsetRanges)
       }
     }
+    MyKafkaSink.closeKafkaProducer
     ssc.start()
     ssc.awaitTermination()
   }

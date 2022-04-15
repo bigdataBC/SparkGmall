@@ -6,7 +6,7 @@ import java.util.Properties
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.serializer.SerializeConfig
 import cn.bigdatabc.realtime.bean.{OrderDetail, OrderInfo, OrderWide}
-import cn.bigdatabc.realtime.util.{MyKafkaSink, MyKafkaUtil, MyRedisUtil, OffsetManagerUtil}
+import cn.bigdatabc.realtime.util._
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
 import org.apache.spark.SparkConf
@@ -19,8 +19,6 @@ import redis.clients.jedis.Jedis
 import scala.collection.mutable.ListBuffer
 
 /**
-  * Author: Felix
-  * Date: 2020/10/30
   * Desc: 从Kafka的DWD层，读取订单和订单明细数据
   * 注意：如果程序数据的来源是Kafka，在程序中如果触发多次行动操作，应该进行缓存
   */
@@ -189,6 +187,10 @@ object OrderWideApp {
     import spark.implicits._
     orderWideSplitDStream.foreachRDD{
       rdd=>{
+        val prop: Properties = MyPropertiesUtil.load("jdbc.properties")
+//        val prop = new Properties
+//        prop.put("username", "default")
+//        prop.put("password", "123456")
         //rdd.cache()
         val df: DataFrame = rdd.toDF
         df.write.mode(SaveMode.Append)
@@ -196,7 +198,7 @@ object OrderWideApp {
           .option("isolationLevel", "NONE") // 设置事务
           .option("numPartitions", "4") // 设置并发
           .option("driver","ru.yandex.clickhouse.ClickHouseDriver")
-          .jdbc("jdbc:clickhouse://node1:8123/default","t_order_wide_0523",new Properties())
+          .jdbc("jdbc:clickhouse://node1:8123/default","t_order_wide_0523",prop)
 
 
         //将数据写回到Kafka dws_order_wide
@@ -212,6 +214,7 @@ object OrderWideApp {
       }
     }
 
+    MyKafkaSink.closeKafkaProducer
     ssc.start()
     ssc.awaitTermination()
 

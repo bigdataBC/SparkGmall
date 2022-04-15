@@ -290,12 +290,11 @@ object OrderInfoApp {
 
           }
         }
-
-
         //3.3提交偏移量
         OffsetManagerUtil.saveOffset(topic,groupId,offsetRanges)
       }
     }
+    MyKafkaSink.closeKafkaProducer
 
     ssc.start()
     ssc.awaitTermination()

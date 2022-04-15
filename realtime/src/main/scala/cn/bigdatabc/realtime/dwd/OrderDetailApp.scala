@@ -12,8 +12,6 @@ import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.kafka010.{HasOffsetRanges, OffsetRange}
 
 /**
-  * Author: Felix
-  * Date: 2020/10/30
   * Desc: 从Kafka的ods_order_detail主题中，读取订单明细数据
   */
 object OrderDetailApp {
@@ -59,7 +57,7 @@ object OrderDetailApp {
       }
     }
 
-    //orderDetailDstream.print(1000)
+//    orderDetailDstream.print(1000)
 
     //关联维度数据  因为我们这里做了维度退化，所以订单明细直接和商品维度进行关联即可
     //以分区为单位进行处理
@@ -93,7 +91,7 @@ object OrderDetailApp {
         orderDetailList.toIterator
       }
     }
-    //orderDetailWithSkuDStream.print(1000)
+    orderDetailWithSkuDStream.print(1000)
 
     //将订单明细数据写回到kafka的DWD层
     orderDetailWithSkuDStream.foreachRDD{
@@ -109,6 +107,7 @@ object OrderDetailApp {
       }
     }
 
+    MyKafkaSink.closeKafkaProducer
     ssc.start()
     ssc.awaitTermination()
   }

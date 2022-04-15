@@ -79,6 +79,7 @@ object BaseDBCanalApp {
             }
           }
         }
+        MyKafkaSink.closeKafkaProducer
         //提交偏移量
         OffsetManagerUtil.saveOffset(topic,groupId,offsetRanges)
       }
